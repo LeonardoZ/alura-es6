@@ -8,6 +8,6 @@ class View {
   }
 
   template(model) {
-      throw new Exception("Método _template() deve ser implementado");  
+      throw new Error("Método _template() deve ser implementado");  
   }
 }
