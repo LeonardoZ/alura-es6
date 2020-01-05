@@ -1,3 +1,12 @@
+import { NegociacoesView } from "../views/NegociacoesView";
+import { MensagemView } from "../views/MensagemView";
+import { Negociacao } from "../models/Negociacao";
+import { Mensagem } from "../models/Mensagem";
+import { ListaNegociacoes } from "../models/ListaNegociacoes";
+import { NegociacaoService } from "../services/NegociacaoService";
+import { DateHelper } from "../helpers/DateHelper";
+import { Bind } from "../helpers/Bind";
+
 class NegociacaoController {
   constructor() {
     let $ = document.querySelector.bind(document);
@@ -31,6 +40,7 @@ class NegociacaoController {
       .catch(erro => (this._mensagem.texto = erro));
 
     setInterval(() => {
+      console.log("Importou");
       this.importaNegociacoes();
     }, 3000);
   }
@@ -83,7 +93,7 @@ class NegociacaoController {
   }
 
   ordena(coluna) {
-    this._listaNegociacoes.orde1na((a, b) => a[coluna] - b[coluna]);
+    this._listaNegociacoes.ordena((a, b) => a[coluna] - b[coluna]);
     if (this._ordemAtual == coluna) {
       this._listaNegociacoes.inverteOrdem();
     } else {
@@ -98,4 +108,10 @@ class NegociacaoController {
     this._inputValor.value = 0;
     this._inputData.focus();
   }
+}
+
+let negociacaoController = new NegociacaoController();
+
+export function currentInstance() {
+  return negociacaoController;
 }

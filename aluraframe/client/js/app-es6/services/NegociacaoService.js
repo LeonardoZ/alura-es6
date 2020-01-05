@@ -1,4 +1,9 @@
-class NegociacaoService {
+import { HttpService } from "./HttpService";
+import { ConnectionFactory } from "./ConnectionFactory";
+import { NegociacaoDao } from "../dao/NegociacaoDao";
+import { Negociacao } from "../models/Negociacao";
+
+export class NegociacaoService {
   constructor() {
     this._http = new HttpService();
   }
@@ -35,17 +40,16 @@ class NegociacaoService {
   }
 
   importa(listaAtual) {
-     return this.obterNegociacoes()
-       .then(negociacoes =>
-         negociacoes.filter(
-           negociacao =>
-             !listaAtual.some(outra => negociacao.isEquals(outra))
-         )
-       )
-       .catch(erro => {
-         console.log(erro);
-         throw new Error("Não foi possível buscar as negociações para importar");
-       });
+    return this.obterNegociacoes()
+      .then(negociacoes =>
+        negociacoes.filter(
+          negociacao => !listaAtual.some(outra => negociacao.isEquals(outra))
+        )
+      )
+      .catch(erro => {
+        console.log(erro);
+        throw new Error("Não foi possível buscar as negociações para importar");
+      });
   }
 
   obterNegociacoes() {
