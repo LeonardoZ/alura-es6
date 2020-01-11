@@ -1,0 +1,22 @@
+npmrc
+
+.DS_Store
+node_modules
+/.github/actions/*/node_modules
+*.log
+*.cache
+/build
+/.eslintcache
+/browser.js
+/browser-polyfill.js
+/runtime.js
+coverage
+dist
+/.package.json
+package-lock.json
+!/.github/actions/*/package-lock.json
+
+# babel generated folders
+/app
+/src
+
